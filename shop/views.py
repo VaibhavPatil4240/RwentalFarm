@@ -185,11 +185,10 @@ def ownerDashBoard(request):
 
 @login_required
 def productView(request, myid):
-
     # Fetch the product using the id
     product = Product.objects.filter(id=myid)
     return render(request, 'shop/prodView.html', {'product':product[0]})
-
+    
 def update_prod(request,myid):
     product=Product.objects.filter(id=myid)
     form=Add_product_form(request.POST or None ,request.FILES or None,instance=product[0])
