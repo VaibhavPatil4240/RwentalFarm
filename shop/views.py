@@ -175,3 +175,15 @@ def rent_summary(request):
 def ownerDashBoard(request):
     return render(request,"shop/owner_dash.html")
 
+
+def contact(request):
+    thank = False
+    if request.method=="POST":
+        name = request.POST.get('name', '')
+        email = request.POST.get('email', '')
+        phone = request.POST.get('phone', '')
+        desc = request.POST.get('desc', '')
+        contact = Contact(name=name, email=email, phone=phone, desc=desc)
+        contact.save()
+        thank = True
+    return render(request, 'shop/contact_us_owner.html', {'thank': thank})
