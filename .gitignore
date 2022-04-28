@@ -1,4 +1,4 @@
 *.pyc
 __pycache__/
 .vscode/
-D:\Python_Programming\RentalFarm\db.sqlite3
+db.sqlite3
