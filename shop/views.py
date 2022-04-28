@@ -195,7 +195,7 @@ def update_prod(request,myid):
     form=Add_product_form(request.POST or None ,request.FILES or None,instance=product[0])
     if form.is_valid():
         form.save()
-        return redirect('ownerDash')
+        return redirect('Rent summary')
     temp_name="shop/add_product.html"
       
     return render(request,temp_name,{'form':form}  )
