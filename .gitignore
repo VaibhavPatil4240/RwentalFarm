@@ -2,7 +2,11 @@
 __pycache__/
 .vscode/
 <<<<<<< HEAD
+<<<<<<< HEAD
 MyAwesomeCart-master\db.sqlite3
 =======
 D:\Python_Programming\RentalFarm\db.sqlite3
 >>>>>>> 92b657949893b579a0ba5b7d873133b5af593b24
+=======
+db.sqlite3
+>>>>>>> 7cd8b8992ba84ad4a1cb7fafa6c8a6cc79d77538
