@@ -1,0 +1,30 @@
+{% extends 'shop/owner_dash.html' %}
+
+{% block body%}
+
+{% for prod in product %}
+{% if request.user.username == prod.owner_name%}
+
+
+<div class="container carousel-inner no-padding">
+    <div class="carousel-item active">
+        
+        <div class="col-xs-3 col-sm-3 col-md-3">
+            <div class="card align-items-center" style="width: 18rem;">
+                <img src='/media/{{prod.image}}' class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title" id="namepr{{prod.id}}">{{prod.product_name}}</h5>
+                    <p class="card-text">{{prod.desc|slice:"0:53"}}...</p>
+                    <h6 class="card-title" >Price: <span id="pricepr{{prod.id}}">{{prod.price}}</span></h6>
+                   
+                    <a href="/shop/owner/products/{{prod.id}}"><button id="qv{{prod.id}}" class="btn btn-primary cart">QuickView</button></a>
+                </div>
+            </div>
+        </div>
+{% endif %}
+
+{% endfor %}
+
+
+{% endblock %}
+

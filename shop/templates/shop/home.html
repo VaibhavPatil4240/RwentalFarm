@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+    <title>{% block title%} {% endblock %}</title>
+     <style>
+       {% block css %} {% endblock %}
+  </style>
+  </head>
+  <body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+        {%if user.is_authenticated %}
+        <a class="nav-item nav link" href="{% url 'ShopHome' %}"><button type="button" class="btn btn-primary">User </button></a>
+        
+        <a class="nav-item nav link" href="{% url 'ownerDash' %}"><button type="button" class="btn btn-danger">Owner</button></a>
+        {% else %}
+        <div class="navbar-nav">
+          <a class="nav-item nav link" href="{% url 'login' %}"><button type="button" class="btn btn-primary">Login</button></a>
+          <a class="nav-item nav link" href="{% url 'register' %}"><button type="button" class="btn btn-warning">Register</button></a>
+        </div>
+        {% endif %}
+    
+
+    </ul>
+  </div>
+
+    <form method='get' action='/shop/search/' class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="search" id="search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form>
+    <button type="button" class="btn btn-secondary mx-2" id="popcart" data-container="body" data-toggle="popover" data-placement="bottom" data-html="true" data-content="Vivamus
+sagittis lacus vel augue laoreet rutrum faucibus.">
+
+
+  Cart(<span id="cart">0</span>)
+</button>
+  </div>
+</nav>
+
+
+
+<div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+      <div class="carousel-item active" data-bs-interval="10000">
+        <img src="https://media.istockphoto.com/photos/tractor-spraying-pesticides-on-soy-field-with-sprayer-at-spring-picture-id1301956707?b=1&k=20&m=1301956707&s=170667a&w=0&h=oBG86_GXYqfsGlfWPVs9YGY-mbhC_WLh8SVpyUTJygU=" class="d-block w-100" alt="...">
+      </div>
+      <div class="carousel-item" data-bs-interval="2000">
+        <img src="https://media.istockphoto.com/photos/indian-farmer-working-with-tractor-at-field-picture-id1291337489?k=20&m=1291337489&s=612x612&w=0&h=WW3LS7JlYxDJcVkKGtJa0wpr507dk7QCq7fJD4CAgbw=" class="d-block w-100" alt="...">
+      </div>
+      <div class="carousel-item">
+        <img src="https://media.istockphoto.com/photos/tractor-spraying-pesticides-on-vegetable-field-with-sprayer-at-spring-picture-id907966126?k=20&m=907966126&s=612x612&w=0&h=DlCQ4XlYsGPD239JVsBFKTpjAauoVvsJZeEkLj4fA9A=" class="d-block w-100" alt="...">
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
