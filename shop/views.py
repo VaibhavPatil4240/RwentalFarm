@@ -6,10 +6,13 @@ from django.views.decorators.csrf import csrf_exempt
 from .models import Product
 from .forms import Add_product_form
 from PayTm import Checksum
+from django.contrib.auth.decorators import login_required
+
+
 # Create your views here.
 from django.http import HttpResponse
 MERCHANT_KEY = 'Your-Merchant-Key-Here'
-
+@login_required
 def index(request):
     allProds = []
     catprods = Product.objects.values('category', 'id')
@@ -47,11 +50,11 @@ def search(request):
         params = {'msg': "Please make sure to enter relevant search query"}
     return render(request, 'shop/search.html', params)
 
-
+@login_required
 def about(request):
     return render(request, 'shop/about.html')
 
-
+@login_required
 def contact(request):
     thank = False
     if request.method=="POST":
@@ -64,7 +67,7 @@ def contact(request):
         thank = True
     return render(request, 'shop/contact.html', {'thank': thank})
 
-
+@login_required
 def tracker(request):
     if request.method=="POST":
         orderId = request.POST.get('orderId', '')
@@ -85,7 +88,7 @@ def tracker(request):
 
     return render(request, 'shop/tracker.html')
 
-
+@login_required
 def productView(request, myid):
 
     # Fetch the product using the id
@@ -93,7 +96,7 @@ def productView(request, myid):
     return render(request, 'shop/prodView.html', {'product':product[0]})
 
 
-
+@login_required
 def productOwnView(request, myid):
     # Fetch the product using the id
     product = Product.objects.filter(id=myid)
@@ -101,7 +104,7 @@ def productOwnView(request, myid):
 
 
 
-
+@login_required
 def checkout(request):
     if request.method=="POST":
         items_json = request.POST.get('itemsJson', '')
@@ -139,7 +142,7 @@ def checkout(request):
 
     return render(request, 'shop/checkout.html')
 
-
+@login_required
 @csrf_exempt
 def handlerequest(request):
     # paytm will send you post request here
@@ -158,7 +161,7 @@ def handlerequest(request):
             print('order was not successful because' + response_dict['RESPMSG'])
     return render(request, 'shop/paymentstatus.html', {'response': response_dict})
 
-
+@login_required
 def add_prod(request):
     form=Add_product_form(request.POST or None, request.FILES or None)
     if form.is_valid():
@@ -175,7 +178,7 @@ def rent_summary(request):
 def ownerDashBoard(request):
     return render(request,"shop/owner_dash.html")
 
-
+@login_required
 def contact(request):
     thank = False
     if request.method=="POST":
