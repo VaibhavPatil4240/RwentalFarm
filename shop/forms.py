@@ -1,7 +1,7 @@
 from django import forms
 from django.forms import ModelForm
-from .models import Product
-from users.models import Account
+from .models import Contact, Product
+
 
 
 
@@ -15,15 +15,10 @@ class Add_product_form(ModelForm):
        
         
 
+       
         
 
-class Role_selection_form(ModelForm):
-    class Meta:
-        model = Account
-        fields='__all__'
-        widgets = {
-        }
-       
+
         
 
         

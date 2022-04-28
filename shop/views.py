@@ -1,4 +1,5 @@
-from django.shortcuts import redirect, render
+from itertools import product
+from django.shortcuts import get_object_or_404, redirect, render
 from .models import Product, Contact, Orders, OrderUpdate
 from math import ceil
 import json
@@ -118,6 +119,7 @@ def checkout(request):
         phone = request.POST.get('phone', '')
         order = Orders(items_json=items_json, name=name, email=email, address=address, city=city,
                        state=state, zip_code=zip_code, phone=phone, amount=amount)
+                       
         order.save()
         update = OrderUpdate(order_id=order.order_id, update_desc="The order has been placed")
         update.save()
@@ -171,12 +173,35 @@ def add_prod(request):
     context={'form':form}    
     return render(request,"shop/add_product.html",context)
 
+@login_required
 def rent_summary(request):
     product=Product.objects.all()
     return render(request,"shop/rent_summary.html",{"product":product})
 
+
+@login_required
 def ownerDashBoard(request):
     return render(request,"shop/owner_dash.html")
+
+@login_required
+def productView(request, myid):
+
+    # Fetch the product using the id
+    product = Product.objects.filter(id=myid)
+    return render(request, 'shop/prodView.html', {'product':product[0]})
+
+def update_prod(request,myid):
+    product=Product.objects.filter(id=myid)
+    form=Add_product_form(request.POST or None ,request.FILES or None,instance=product[0])
+    if form.is_valid():
+        form.save()
+        return redirect('ownerDash')
+    temp_name="shop/add_product.html"
+      
+    return render(request,temp_name,{'form':form}  )
+
+
+
 
 @login_required
 def contact(request):

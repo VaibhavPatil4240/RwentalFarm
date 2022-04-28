@@ -14,5 +14,6 @@ urlpatterns = [
     path("owner/",views.ownerDashBoard,name="ownerDash"),
     path("owner/addproduct/", views.add_prod, name="Add prod"),
     path("owner/rentproduct/", views.rent_summary, name="Rent summary"),
+    path("updateproducts/<int:myid>", views.update_prod, name="Productupd"),
 
 ]

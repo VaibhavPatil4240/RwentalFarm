@@ -1,8 +1,8 @@
 {% extends 'shop/basic.html' %}
 
-{% block title%} Contact Us - My Awesome Cart{% endblock %}
+{% block title%} Contact Us -Rental Farm{% endblock %}
 {% block body %}
-<div class="container my-3">
+<!-- <div class="container my-3">
     <h3>Contact Us</h3>
     <form action="/shop/contact/" method="post">{% csrf_token %}
   <div class="form-group">
@@ -40,3 +40,23 @@ document.location = "/shop/contact";
 {% endif %}
 </script>
 {% endblock %}
+ -->
+
+
+
+<div class="content-section">
+  <form action="" method="POST">
+  {% csrf_token %}
+  <fieldset class="form-group">
+      <legend class="border-bottom mb-4">Log In</legend>
+      {{form.as_p}}
+  </fieldset>
+  <div class="form-group">
+      <button class="btn btn-outline-info" type="submit" name="signup">Sign In</button>
+  </div>
+  
+  </form>
+ 
+  
+  </div>
+  {% endblock %}
